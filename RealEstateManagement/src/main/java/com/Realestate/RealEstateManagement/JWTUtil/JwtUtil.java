@@ -1,3 +1,4 @@
+
 package com.Realestate.RealEstateManagement.JWTUtil;
 
 import io.jsonwebtoken.*;
@@ -8,10 +9,9 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private static final String SECRET_KEY = "YourSuperSecretKeyForJwtSigningYourSuperSecretKey";
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
 
-    private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // ✅ Generates a secure key automatically
+    private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
 
     // Generate Token
     public String generateToken(String email) {
